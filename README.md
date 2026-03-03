@@ -1,12 +1,6 @@
 # HANDLING-REST-API
 Understanding rest API || POST , PUT , GET , DELETE tasks
 
-<div align="center">
+## 🚀 Live Demo
 
-<a href="https://handling-rest-api.onrender.com" target="_blank">
-  <button style="padding:15px 30px; font-size:18px; background-color:#6C63FF; color:white; border:none; border-radius:8px; cursor:pointer;">
-    🚀 View Live Demo
-  </button>
-</a>
-
-</div>
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-00C853?style=for-the-badge&logo=render&logoColor=white)](https://handling-rest-api.onrender.com)
