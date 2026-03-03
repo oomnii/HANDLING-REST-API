@@ -1,0 +1,534 @@
+:root{
+  --paper:#f3ead8;
+  --paper2:#efe2c9;
+  --ink:#1d1a14;
+  --inkSoft:#3a342a;
+  --muted:#6b5f4c;
+
+  --accent:#8b2e1a;     /* bookcloth red */
+  --accent2:#1f5f4a;    /* library green */
+  --wash: rgba(139,46,26,.10);
+
+  --border: rgba(29,26,20,.16);
+  --shadow: 0 18px 45px rgba(29,26,20,.18);
+
+  --r: 16px;
+
+  --serif1: "Fraunces", serif;
+  --serif2: "Spectral", serif;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  color: var(--ink);
+  font-family: var(--serif2);
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(139,46,26,.10), transparent 60%),
+    radial-gradient(900px 700px at 90% 10%, rgba(31,95,74,.10), transparent 58%),
+    linear-gradient(180deg, var(--paper), var(--paper2));
+}
+
+/* Paper atmosphere */
+.paper{ position:fixed; inset:0; pointer-events:none; }
+.grain{
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+  opacity:.18;
+}
+.vignette{
+  position:absolute; inset:-2px;
+  background: radial-gradient(circle at 50% 25%, transparent 55%, rgba(29,26,20,.18) 100%);
+  opacity:.25;
+}
+
+.wrap{
+  width:min(980px, calc(100% - 32px));
+  margin: 28px auto 40px;
+}
+
+/* Masthead */
+.mast{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  padding: 18px 18px;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
+  box-shadow: var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.mast::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(700px 260px at 0% 0%, rgba(139,46,26,.12), transparent 60%),
+    radial-gradient(700px 260px at 100% 0%, rgba(31,95,74,.10), transparent 60%);
+  opacity:.9;
+  pointer-events:none;
+}
+
+.mark{
+  width:54px; height:54px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  font-family: var(--serif1);
+  font-weight: 600;
+  letter-spacing:.5px;
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), #5f1f13);
+  box-shadow: 0 12px 24px rgba(29,26,20,.22);
+  position:relative;
+  z-index:1;
+}
+.titleBlock{ position:relative; z-index:1; flex:1; }
+h1{
+  margin:0;
+  font-family: var(--serif1);
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing:.3px;
+}
+.subtitle{
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.statusPill{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-radius: 999px;
+  border: 1px solid rgba(29,26,20,.14);
+  background: rgba(255,255,255,.42);
+  padding: 10px 12px;
+  white-space:nowrap;
+}
+.lamp{
+  width:10px; height:10px;
+  border-radius: 999px;
+  background: var(--accent2);
+  box-shadow: 0 0 0 3px rgba(31,95,74,.15);
+}
+.label{
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing:.6px;
+  text-transform: uppercase;
+}
+.statusText{
+  font-weight: 600;
+  letter-spacing:.2px;
+}
+
+/* Cards */
+.card{
+  margin-top: 14px;
+  padding: 16px 16px 14px;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.35);
+  box-shadow: 0 12px 26px rgba(29,26,20,.12);
+  backdrop-filter: blur(6px);
+}
+.card--add{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.25));
+}
+
+.cardHead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom: 12px;
+}
+.cardHead h2{
+  margin:0;
+  font-family: var(--serif1);
+  font-weight: 600;
+  letter-spacing:.2px;
+  font-size: 18px;
+}
+.right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.apiTag{
+  font-size: 12px;
+  letter-spacing:.5px;
+  text-transform: uppercase;
+  color: rgba(139,46,26,.95);
+  background: rgba(139,46,26,.10);
+  border: 1px solid rgba(139,46,26,.18);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Inputs & Buttons */
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.input{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(29,26,20,.20);
+  background: rgba(255,255,255,.55);
+  color: var(--ink);
+  outline:none;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+}
+.input::placeholder{ color: rgba(107,95,76,.75); }
+.input:focus{
+  border-color: rgba(139,46,26,.35);
+  box-shadow: 0 0 0 4px rgba(139,46,26,.12);
+}
+.input--small{ max-width: 220px; }
+
+.btn{
+  border-radius: 999px;
+  border: 1px solid rgba(29,26,20,.18);
+  padding: 10px 14px;
+  cursor:pointer;
+  background: rgba(255,255,255,.55);
+  color: var(--ink);
+  font-family: var(--serif1);
+  font-weight: 600;
+  letter-spacing:.2px;
+  transition: transform .1s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn--ink{
+  background: linear-gradient(180deg, var(--ink), #0f0d09);
+  color: #fff;
+  border-color: rgba(15,13,9,.55);
+  box-shadow: 0 12px 22px rgba(29,26,20,.20);
+}
+.btn--ink:hover{ box-shadow: 0 16px 28px rgba(29,26,20,.25); }
+
+.btn--ghost{
+  background: rgba(255,255,255,.42);
+}
+.btn--ghost:hover{
+  border-color: rgba(31,95,74,.35);
+  box-shadow: 0 14px 24px rgba(31,95,74,.10);
+}
+
+.note{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+kbd{
+  font-family: var(--serif1);
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(29,26,20,.18);
+  background: rgba(255,255,255,.55);
+}
+
+/* Tasks */
+.tasks{ display:grid; gap:10px; }
+
+.task{
+  border-radius: var(--r);
+  border: 1px solid rgba(29,26,20,.14);
+  background: rgba(255,255,255,.45);
+  padding: 12px;
+  position:relative;
+  overflow:hidden;
+}
+.task::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background: linear-gradient(90deg, rgba(139,46,26,.06), transparent 35%, rgba(31,95,74,.06));
+  opacity:.9;
+  pointer-events:none;
+}
+
+.taskTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  position:relative;
+}
+.taskTitle{
+  font-family: var(--serif1);
+  font-weight: 600;
+  letter-spacing:.2px;
+}
+.badge{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(29,26,20,.16);
+  background: rgba(255,255,255,.55);
+}
+.badge.ok{
+  border-color: rgba(31,95,74,.28);
+  background: rgba(31,95,74,.10);
+}
+.badge.no{
+  border-color: rgba(139,46,26,.22);
+  background: rgba(139,46,26,.08);
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 10px;
+  position:relative;
+}
+.smallInput{
+  flex: 1 1 220px;
+  min-width: 180px;
+}
+
+/* Code block */
+.code{
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: var(--r);
+  border: 1px solid rgba(29,26,20,.18);
+  background: rgba(255,255,255,.55);
+  color: var(--inkSoft);
+  overflow:auto;
+  min-height: 46px;
+}
+
+/* Footer */
+.foot{
+  margin-top: 14px;
+  color: var(--muted);
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  align-items:center;
+  padding: 8px 10px;
+}
+.foot a{
+  color: var(--accent2);
+  text-decoration:none;
+  border-bottom: 1px dashed rgba(31,95,74,.45);
+}
+.foot a:hover{ border-bottom-style: solid; }
+.dot{ opacity:.6; }
+
+/* Responsive */
+@media (max-width: 720px){
+  .mast{ flex-direction:column; align-items:flex-start; }
+  .row{ flex-direction:column; align-items:stretch; }
+  .input--small{ max-width:100%; }
+}
+
+/* ===========================
+   LIBRARY STAMP (VISIBLE)
+=========================== */
+
+.stamp{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.stampInner{
+  font-family: var(--serif1);
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 28px 48px;
+  border: 6px solid #a00000;
+  color: #a00000;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+
+  font-size: 28px;
+  text-transform: uppercase;
+
+  transform: scale(3) rotate(-18deg);
+  opacity: 0;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,.35);
+}
+
+/* Dark overlay during stamp */
+.stamp.show::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.15);
+}
+
+/* Animation */
+.stamp.show .stampInner{
+  animation: stampPress 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes stampPress{
+  0%{
+    opacity: 0;
+    transform: scale(3) rotate(-18deg);
+  }
+  40%{
+    opacity: 1;
+    transform: scale(1.1) rotate(-10deg);
+  }
+  65%{
+    transform: scale(.95) rotate(-10deg);
+  }
+  100%{
+    opacity: 0;
+    transform: scale(1) rotate(-10deg);
+  }
+}
+
+/* =========================================
+   STAMP: shake + thud moment + ink splatter
+========================================= */
+
+@keyframes pageShake {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  12%  { transform: translate(-2px, 1px) rotate(-0.25deg); }
+  25%  { transform: translate(3px, -1px) rotate(0.35deg); }
+  38%  { transform: translate(-3px, -1px) rotate(-0.35deg); }
+  55%  { transform: translate(2px, 2px) rotate(0.2deg); }
+  72%  { transform: translate(-1px, -2px) rotate(-0.15deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+/* apply shake to the whole page wrapper */
+.wrap.shake {
+  animation: pageShake 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+.stamp{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+}
+
+.stamp::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.18);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.stampInner{
+  position: relative;
+  z-index: 2;
+
+  font-family: var(--serif1);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  padding: 26px 44px;
+  border-radius: 14px;
+
+  border: 7px double #9c0000;
+  color: #9c0000;
+  background: rgba(255,255,255,.78);
+
+  box-shadow: 0 28px 70px rgba(0,0,0,.35);
+  text-align: center;
+
+  transform: translateY(-18px) scale(3.2) rotate(-18deg);
+  opacity: 0;
+
+  /* ink “pressed” texture */
+  filter: contrast(1.05);
+}
+
+.stampSub{
+  display:block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: rgba(156,0,0,.78);
+  text-transform: none;
+  font-family: var(--serif2);
+  font-weight: 600;
+}
+
+/* Ink splatters */
+.splatter{
+  position:absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 45%, rgba(156,0,0,.55) 0 12%, transparent 13%),
+    radial-gradient(circle at 65% 55%, rgba(156,0,0,.42) 0 10%, transparent 11%),
+    radial-gradient(circle at 55% 30%, rgba(156,0,0,.32) 0 8%, transparent 9%),
+    radial-gradient(circle at 35% 70%, rgba(156,0,0,.28) 0 7%, transparent 8%),
+    radial-gradient(circle at 75% 35%, rgba(156,0,0,.24) 0 6%, transparent 7%);
+  filter: blur(.2px);
+  opacity: 0;
+  transform: scale(.6);
+}
+
+.spl1{ transform: translate(-220px, -110px) scale(.65) rotate(12deg); }
+.spl2{ transform: translate(240px, -80px) scale(.60) rotate(-18deg); }
+.spl3{ transform: translate(-260px, 140px) scale(.70) rotate(-6deg); }
+.spl4{ transform: translate(250px, 160px) scale(.58) rotate(22deg); }
+
+@keyframes splat {
+  0%   { opacity: 0; filter: blur(8px); }
+  35%  { opacity: .85; filter: blur(.3px); }
+  100% { opacity: 0; filter: blur(0px); }
+}
+
+/* main stamp animation: lasts ~2.5s total */
+@keyframes stampPressLong {
+  0%   { opacity: 0; transform: translateY(-18px) scale(3.2) rotate(-18deg); }
+  20%  { opacity: 1; transform: translateY(0px) scale(1.08) rotate(-10deg); }
+  32%  { transform: translateY(0px) scale(.98) rotate(-10deg); } /* “press” */
+  70%  { opacity: 1; transform: translateY(0px) scale(1) rotate(-10deg); } /* hold */
+  100% { opacity: 0; transform: translateY(0px) scale(1) rotate(-10deg); }
+}
+
+/* Active state */
+.stamp.show{
+  opacity: 1;
+}
+.stamp.show::before{
+  opacity: 1;
+}
+
+.stamp.show .stampInner{
+  animation: stampPressLong 2.5s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* stagger splatters right after impact */
+.stamp.show .spl1{ animation: splat 2.5s ease forwards; animation-delay: .18s; }
+.stamp.show .spl2{ animation: splat 2.5s ease forwards; animation-delay: .22s; }
+.stamp.show .spl3{ animation: splat 2.5s ease forwards; animation-delay: .20s; }
+.stamp.show .spl4{ animation: splat 2.5s ease forwards; animation-delay: .24s; }

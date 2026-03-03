@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REST APIs</title>
+
+  <!-- Warm library typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="paper" aria-hidden="true">
+    <div class="grain"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <main class="wrap">
+    <header class="mast">
+      <div class="mark" aria-hidden="true">OM</div>
+      <div class="titleBlock">
+        <h1>TASK SCHEDULER</h1>
+        <p class="subtitle">A reliable record of work — REST API || OM SETH</p>
+      </div>
+      <div class="statusPill">
+        <span class="lamp"></span>
+        <span class="label">Status</span>
+        <span id="status" class="statusText">Ready</span>
+      </div>
+</header>
+
+    <section class="card card--add">
+      <div class="cardHead">
+        <h2>Add a new entry</h2>
+        <div class="apiTag">POST /tasks</div>
+      </div>
+
+      <div class="row">
+        <input id="newTitle" class="input" type="text" placeholder="Write a task… (e.g., ‘Finish WE lab record’)">
+        <button id="addBtn" class="btn btn--ink">Add</button>
+      </div>
+
+      <p class="note">Tip: press <kbd>Enter</kbd> to add instantly.</p>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <h2>All entries</h2>
+        <div class="right">
+          <div class="apiTag">GET /tasks</div>
+          <button id="refreshBtn" class="btn btn--ghost">Refresh</button>
+        </div>
+      </div>
+
+      <div id="tasks" class="tasks"></div>
+    </section>
+
+    <section class="card">
+      <div class="cardHead">
+        <h2>Find by ID</h2>
+        <div class="apiTag">GET Tasks by:id</div>
+      </div>
+
+      <div class="row">
+        <input id="findId" class="input input--small" type="number" placeholder="Task ID">
+        <button id="findBtn" class="btn btn--ghost">Fetch</button>
+      </div>
+
+      <pre id="findResult" class="code"></pre>
+    </section>
+
+    <footer class="foot">
+      <span>Local API:</span> <a href="/tasks" target="_blank" rel="noreferrer">/tasks</a>
+      <span class="dot">•</span>
+      <span>Node + Express</span>
+    </footer>
+  </main>
+
+
+  <script src="app.js"></script>
+  <!-- Stamp overlay -->
+  <div id="stamp" class="stamp" aria-hidden="true">
+    <div class="splatter spl1"></div>
+    <div class="splatter spl2"></div>
+    <div class="splatter spl3"></div>
+    <div class="splatter spl4"></div>
+
+    <div class="stampInner">
+      ✓ ENTRY RECORDED
+      <span class="stampSub">Task added to the page</span>
+    </div>
+  </div>
+  <audio id="stampSound" src="soundEffect.mp3" preload="auto"></audio>
+
+</body>
+
+</html>
